@@ -1,8 +1,13 @@
 from transformers import AutoModel, AutoTokenizer
 import gradio as gr
+import uuid
+from settings import model_dir,log_dir
 
 #place your THUDM/chatglm-6b  here
-model_dir = r"D:\ChatGLM-系列项目\ChatGLM-6B-main\THUDM\chatglm-6b"
+# model_dir = r"D:\ChatGLM-系列项目\ChatGLM-6B-main\THUDM\chatglm-6b"
+# log_dir = r"D:\ChatGLM-系列项目\MY_ChatGLM\ChatGLM_webui\log"
+
+
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 # model = AutoModel.from_pretrained(model_dir, trust_remote_code=True).half().cuda()
 # 改用4-bit加载
@@ -31,6 +36,18 @@ def clear(histroy):
     updates = updates + [gr.Textbox.update(visible=False)] * (MAX_BOXES - len(updates))  
     return [histroy] + updates
 
+def save(history):
+    uuid_key = uuid.uuid1()
+    if history is None:
+        history = []
+        
+    with open(log_dir+f"/saved_file_{uuid_key}.txt","a") as f:    
+        for query, response in history:
+            f.write("Q:"+query+"\n")
+            f.write(response+"\n")
+    return [history]
+
+
 with gr.Blocks() as demo:
     state = gr.State([])
     text_boxes = []
@@ -41,13 +58,16 @@ with gr.Blocks() as demo:
             text_boxes.append(gr.Markdown(visible=False, label="Answer："))
 
     with gr.Row():
-        with gr.Column(scale=4):
+        with gr.Column(scale=10):
             txt = gr.Textbox(show_label=False, placeholder="Enter text and press enter").style(container=False)
         with gr.Column(scale=1):
             button1 = gr.Button("Generate")
-        with gr.Column(scale=1):
+        with gr.Column(scale=0.5):
             button2 = gr.Button("clear")
+        with gr.Column(scale=0.5):
+            button3 = gr.Button("save")
     # click(fn,input,output)        
     button1.click(predict, [txt, state], [state] + text_boxes)
     button2.click(clear,[],[state]+text_boxes)
+    button3.click(save,[state],[state])
 demo.queue().launch(share=True)
