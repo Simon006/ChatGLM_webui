@@ -11,24 +11,24 @@ Here we propose a fine-tuned solution in the direction of intelligent customer s
 
 ## Install
 ```shell
-`pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117`
-`pip install -r requirements.txt`
+pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
+pip install -r requirements.txt
 ```
 
 ## ChatGLM-PreTrained
 ```shell
-`https://huggingface.co/THUDM/chatglm-6b`
+https://huggingface.co/THUDM/chatglm-6b
 ```
 
 ## Usage
 ### webui_demo
 ```shell
-`python weiui_gradio.py` 
+python weiui_gradio.py
 ```
 
 ### cmd demo
 ```
-`python cli_demo.py`
+python cli_demo.py
 ```
 
 ## Examples
