@@ -32,3 +32,5 @@ python cli_demo.py
 ```
 
 ## Examples
+
+![image](https://github.com/Simon006/ChatGLM_webui/blob/main/example_png/example.png)
