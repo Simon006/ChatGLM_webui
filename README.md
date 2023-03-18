@@ -6,7 +6,7 @@ The ChatGLM_WebUI web project aims to provide a convenient and intuitive interac
 
 Due to the small size of ChatGLM-6B, it is currently known to have considerable limitations, such as factual/mathematical logic errors, possible generation of harmful/biased content, weak contextual ability, self-awareness confusion, and Generate content that completely contradicts Chinese instructions for English instructions. Please understand these issues before use to avoid misunderstanding.
 
-Here we propose a fine-tuned solution in the direction of intelligent customer service.
+Here we propose a fine-tuned solution in the direction of intelligent customer service in future.
 
 
 ## Install
@@ -21,6 +21,14 @@ Here we propose a fine-tuned solution in the direction of intelligent customer s
 ```
 
 ## Usage
+### webui_demo
+```shell
+`python weiui_gradio.py` 
+```
 
+### cmd demo
+```
+`python cli_demo.py`
+```
 
 ## Examples
