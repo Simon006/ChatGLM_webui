@@ -24,7 +24,7 @@ def predict(input, history=None):
     response, history = model.chat(tokenizer, input, history)
     updates = []
     for query, response in history:
-        updates.append(gr.update(visible=True, value="用户：" + query))
+        updates.append(gr.update(visible=True, value="User：" + query))
         updates.append(gr.update(visible=True, value="ChatGLM-6B：" + response))
     if len(updates) < MAX_BOXES:
         updates = updates + [gr.Textbox.update(visible=False)] * (MAX_BOXES - len(updates))
